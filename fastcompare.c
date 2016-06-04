@@ -8,8 +8,8 @@
 //#define numel(x)  (sizeof(x) / sizeof((x)[0]))
 
 long int thishash;
-long long int n;
-long long int lines = 0;
+long long int n, count_a;
+long long int lines = 0, count_b = 0;
 
 int main(int argc, char* argv[])
 {
@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 				lines++;
 		}
 		rewind(fp);
+		count_a = lines;
 		
 		printf("start generating %d hashes for file %s\n", lines, argv[1]);
 		
@@ -57,6 +58,7 @@ int main(int argc, char* argv[])
 		// build temporary new hash for every line
 		// to compare with in-memory hash from 1st file.
 		while ((read2 = getline(&line2, &len2, fp2)) != -1) {
+			count_b++;
 			thishash = crc32(0, (const void*)line2, len2);
 			
 			// search for thishash in hashes from 1st file
@@ -80,10 +82,11 @@ int main(int argc, char* argv[])
 			
 		}
 		
+		printf("summary:\n File %s: %d lines\n File %s: %d lines\n", argv[1], count_a, argv[2], count_b);
 		// if lines' value is >= 0, there are some lines left which are not
 		// part of the 2nd file.
 		if (lines >= 0) {
-			printf("File %s has %d lines which are not in file %s\n", argv[1], lines + 1, argv[2]);
+			printf(" File %s has %d lines which are not in file %s\n", argv[1], lines + 1, argv[2]);
 			// 4th argument will print all line numbers which are left
 			if (argc == 4) {
 				printf(" Following lines of %s are not included in %s: \n\n", argv[1], argv[2]);
