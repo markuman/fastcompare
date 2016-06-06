@@ -1,6 +1,6 @@
 build: ## compile fastcompare
 	@echo "compiling fastcompare"
-	@gcc fastcompare.c -lz -O3 -faggressive-loop-optimizations -o fastcompare
+	@gcc fastcompare.c -lz -Ofast -pipe -march=native -mtune=native -o fastcompare
 
 	
 .PHONY: help
