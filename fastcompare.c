@@ -28,7 +28,9 @@ int main(int argc, char* argv[])
 		printf("start generating %d hashes for file %s\n", lines, argv[1]);
 		
 		// build in-memory hashes for the first file
-		long int hashes[lines], hashidx[lines];
+		long long int *hashes, *hashidx;
+		hashes = malloc (sizeof(long long int) * lines + 1);
+		hashidx = malloc (sizeof(long long int) * lines + 1);
 		lines = -1;
 		while ((read = getline(&line, &len, fp)) != -1) {
 			lines++;  
@@ -86,6 +88,8 @@ int main(int argc, char* argv[])
 		} else {
 			printf("File %s is completly contained in file %s\n", argv[1], argv[2]);
 		}
+		free(hashes);
+		free(hashidx);
 	} else {
 		printf("useage:\n\tfastcompare <file1> <file2>\n");
 		printf("\tfastcompare <file1> <file2> verbose\n\n");
