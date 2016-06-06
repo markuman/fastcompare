@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 		rewind(fp);
 		count_a = lines;
 		
-		printf("start generating %d hashes for file %s\n", lines, argv[1]);
+		printf("start generating %lli hashes for file %s\n", lines, argv[1]);
 		
 		// build in-memory hashes for the first file
 		long long int *hashes, *hashidx;
@@ -90,11 +90,11 @@ int main(int argc, char* argv[])
 			} // we could break here, but then we don't know the number of lines from file 2.
 		}
 		
-		printf("summary:\n File %s: %d lines\n File %s: %d lines\n", argv[1], count_a, argv[2], count_b);
+		printf("summary:\n File %s: %lli lines\n File %s: %lli lines\n", argv[1], count_a, argv[2], count_b);
 		// if lines' value is >= 0, there are some lines left which are not
 		// part of the 2nd file.
 		if (lines >= 0) {
-			printf(" File %s has %d lines which are not in file %s\n", argv[1], lines + 1, argv[2]);
+			printf(" File %s has %lli lines which are not in file %s\n", argv[1], lines + 1, argv[2]);
 			// 4th argument will print all line numbers which are left
 			//if (argc == 4) {
 			//	printf(" Following lines of %s are not included in %s: \n\n", argv[1], argv[2]);
