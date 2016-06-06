@@ -142,7 +142,8 @@ int main(int argc, char* argv[])
 			printf(" File %s has %lli lines which are not in file %s\n", argv[1], lines + 1, argv[2]);
 			// 4th argument will print all line numbers which are left
 			if (argc == 4) {
-				printf(" Following lines of %s are not included in %s: \n\n", argv[1], argv[2]);
+				printf(" Following lines of %s are not included in %s: \n", argv[1], argv[2]);
+				printf(" use: ./fastcompare %s %s -v| sed -n -e '/^$/,$p' > linenumbers \n\n", argv[1], argv[2]);
 				for (n = 0; n < count_a; n++) {
 					if (keyvalue[n].used == false) { printf("%lli\n", keyvalue[n].index + 1); }
 				}
