@@ -2,26 +2,28 @@
 
 use `make build` to compile
 
-## examples
+## usage
 
-	$ ./fastcompare small big 
-	start generating 3 hashes for file small
-	start comparing hashes with file big
-	summary:
-	 File small: 3 lines
-	 File big: 5 lines
-	 File small has 1 lines which are not in file big
+`fastcompare file1 file2`
+
+## about
+
+`fastcompare` is designed to compare the line-based content (order doesn't matter) of ASCII files.
+
+For the 1st file, it will generate `crc32` hashes for each line (so it is more memory efficient when you take the smaller file as the 1st file. But this has no affect on the speed).
+Now it will iterate over the 2nd file, build a temporary `crc32` hash and do a binary search in the hash array.
 
 
-	$ ./fastcompare big small verbose
-	start generating 5 hashes for file big
-	start comparing hashes with file small
-	summary:
-	 File big: 5 lines
-	 File small: 3 lines
-	 File big has 3 lines which are not in file small
-	 Following lines of big are not included in small: 
 
-	1
-	5
-	3
+## caution
+
+still under construction
+
+todo:
+
+  * use struct array to carry line index after sorting
+  * use optional other hashing algorithms to lower the risc of collisions
+  
+# restrictions
+
+  * duplicates lines from file one, can be marked as "not included in" 2nd file (only when the 2nd one hasn't the equal number of this line).
