@@ -74,10 +74,15 @@ int main(int argc, char* argv[])
 {
 	if (argc >= 3) {
 		FILE * fp;
+		fp = fopen(argv[1], "r");
+		if (fp == NULL) { exit(1); }
+		FILE * fp2;
+		fp2 = fopen(argv[2], "r");
+		if (fp2 == NULL) { exit(1); }
+		
 		char * line = NULL;
 		size_t len = 0;
 		ssize_t read;
-		fp = fopen(argv[1], "r");
 		
 		// first determine number of lines for array allocation
 		while ((n = fgetc (fp)) != EOF ) {
@@ -107,12 +112,10 @@ int main(int argc, char* argv[])
 		qsort(keyvalue, lines + 1, sizeof(struct vi), struct_compare);
 		
 		// 2nd file here
-		FILE * fp2;
 		char * line2 = NULL;
 		size_t len2 = 0;
 		ssize_t read2;
 		printf("start comparing hashes with file %s\n", argv[2]);
-		fp2 = fopen(argv[2], "r");
 
 		
 		// build temporary new hash for every line
