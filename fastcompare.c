@@ -26,6 +26,17 @@ long long int binary_search (long long int *array, long long int n, long long in
     return -1;
 }
 
+// compare for long long int
+
+int compare (const void *a, const void *b) {
+    const long long int *x = a, *y = b;
+    if (*x > *y) {
+        return 1;
+    } else {
+        return (*x < *y) ? -1 : 0;
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	if (argc >= 3) {
