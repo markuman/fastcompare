@@ -8,7 +8,7 @@ use `make build` to compile
 
 ## about
 
-`fastcompare` is designed to compare the line-based content (order doesn't matter) of ASCII files.
+`fastcompare` is designed to compare line-based content (order doesn't matter) of very large ASCII files.
 
 For the 1st file, it will generate `crc32` hashes for each line (so it is more memory efficient when you take the smaller file as the 1st file. But this has no affect on the speed).
 Now it will iterate over the 2nd file, build a temporary `crc32` hash and do a binary search in the hash array.
