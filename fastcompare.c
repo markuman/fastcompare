@@ -7,6 +7,25 @@ long int thishash;
 long long int n, count_a;
 long long int lines = 0, count_b = 0;
 
+// binary_search because I dunno how to use bsearch with long long int correctly
+long long int binary_search (long long int *array, long long int n, long long int value) {
+    long long int from = 0, to = n;
+    long long int idx = (from + to) / 2;
+    while (from <= to) {
+        if (array[idx] == value) {
+            return idx;
+        }
+        else if (array[idx] < value) {
+            from = idx + 1;
+        }
+        else {
+            to = idx - 1;
+        }
+        idx = (from + to) / 2;
+    }
+    return -1;
+}
+
 int main(int argc, char* argv[])
 {
 	if (argc >= 3) {
