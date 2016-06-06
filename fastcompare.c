@@ -1,11 +1,7 @@
-// gcc fastcompare.c -lz -O3 -faggressive-loop-optimizations
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <zlib.h>
-
-//#define DEBUG
-//#define numel(x)  (sizeof(x) / sizeof((x)[0]))
 
 long int thishash;
 long long int n, count_a;
@@ -39,13 +35,7 @@ int main(int argc, char* argv[])
 			hashes[lines] = crc32(0, (const void*)line, len);
 			hashidx[lines] = lines;			
 		}
-		//fclose(fp);
-		
-		#ifdef DEBUG
-			for (n = 0; n <= lines; n++) {
-				printf("%lli: %lX\n", n, hashes[n]);
-			}
-		#endif
+
 		
 		// 2nd file here
 		FILE * fp2;
